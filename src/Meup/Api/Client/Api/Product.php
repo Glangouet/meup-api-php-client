@@ -202,6 +202,24 @@ class Product extends AbstractApi
     }
 
     /**
+     * Reset partner's inventory
+     *
+     * WARNING : see documentation for more information about side effects
+     *
+     * @link http://developers.1001pharmacies.com/docs/v1/products.html#tocAnchor-1-1-7
+     *
+     * @return null
+     */
+    public function resetInventory()
+    {
+        return $this
+            ->get(
+                sprintf('%s/reset', self::BASE_API_PATH)
+            )
+        ;
+    }
+
+    /**
      * Update a specific product
      *
      * @param string  $identifierType    (@see: Meup\Api\Client\Model\ProductType)

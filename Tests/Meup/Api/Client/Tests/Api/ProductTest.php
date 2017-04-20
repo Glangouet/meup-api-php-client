@@ -9,6 +9,7 @@
  */
 
 namespace Meup\Api\Client\Tests\Api;
+
 use Meup\Api\Client\Api\Product;
 use Meup\Api\Client\Model\ProductIdentifierType;
 
@@ -180,6 +181,25 @@ class ProductTest extends TestCase
 
         $result = $api->destock(ProductIdentifierType::IDENTIFIER_SKU, '1234567890', 5);
         $this->assertEquals($expectedArray, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function resetInventoryTest()
+    {
+        $expected = null;
+
+        /** @var Product|\PHPUnit_Framework_MockObject_MockObject $api */
+        $api = $this->getApiMock();
+        $api
+            ->expects($this->once())
+            ->method('get')
+            ->with('api/reset')
+            ->will($this->returnValue($expected));
+
+        $result = $api->resetInventory();
+        $this->assertEquals($expected, $result);
     }
 
     /**
